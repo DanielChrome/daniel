@@ -1,0 +1,203 @@
+<!DOCTYPE  html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>BLOG</title>
+		{% include "postagens/scripts.html" %}
+	</head>
+	
+	<body>
+			{% include "postagens/header.html" %}
+			<!-- MAIN -->
+			<div id="main">
+				<!-- wrapper-main -->
+				<div class="wrapper">
+					
+					
+					<!-- content -->
+					<div id="content">
+						
+						<!-- title -->
+						<div id="page-title">
+							<span class="title">The Blog</span>
+							<span class="subtitle">Donec eu libero sit amet quam egestas semper.</span>
+						</div>
+						<!-- ENDS title -->
+						
+						<!-- Posts -->
+						<div id="posts">
+							{% for 	post in posts%}
+							<!-- post -->
+							<div class="post">
+								<h1><a href="single.html">{{post.titulo}}</a></h1>
+								<div class="n-comments">165</div>
+								
+								<!-- shadow -->
+								<div class="thumb-shadow">
+								
+									<!-- post-thumb -->
+									<div class="post-thumbnail">
+										<!-- meta -->
+										<ul class="meta">
+											<li><strong>Publicado em </strong> {{post.datapublicacao}} </li>
+											<li><strong>Por</strong> <a href="#">{{post.usuario}}</a></li> 
+											<li> <strong>Posted in</strong> 
+												<div class="meta-tags">
+													<a href="#">Webdesign</a>
+													<a href="#">Code</a>
+													<a href="#">Photo</a>
+												</div>
+											</li>
+										</ul>
+										<!-- ENDS meta -->
+										<a href="single.html" class="cover"><img src={{ MEDIA_URL }}{{post.imagem}}  alt={{post.titulo}} /></a>
+									</div>
+									<!-- ENDS post-thumb -->
+									
+									<div class="the-excerpt">
+										{{post.conteudo}}
+									</div>		
+									<a href="single.html" class="read-more link-button"><span>Read more</span></a>	
+								
+								</div>
+								<!-- ENDS shadow -->
+							</div>
+							<!-- ENDS post -->
+							{% endfor %}
+							
+							<!-- ENDS post -->
+		
+						</div>
+						<!-- ENDS Posts -->	
+						
+						
+						<!-- sidebar -->
+						<ul id="sidebar">
+							<!-- init sidebar -->
+							<li>
+								<h6>Categorias</h6>		
+								<ul>
+									{% for categoria in categorias%}
+									<li class="cat-item"><a href="#">{{categoria.nome}}</a></li>
+									{% endfor %}
+								</ul>
+							</li>	
+							
+							<li>
+								<h6>Archives</h6>		
+								<ul>
+									<li class="cat-item"><a href="#" title="View all posts">Pellentesque habitant morbi</a></li>
+									<li class="cat-item"><a href="#" title="View all posts">Pellentesque habitant morbi</a></li>
+									<li class="cat-item"><a href="#" title="View all posts">Pellentesque habitant morbi</a></li>
+									<li class="cat-item"><a href="#" title="View all posts">Pellentesque habitant morbi</a></li>
+								</ul>
+							</li>
+							<!-- ENDS init sidebar -->
+						</ul>
+						<!-- ENDS sidebar -->
+		
+						<!-- pagination -->	
+						<div class="clear"></div>
+						<ul class='pager'>
+							<li class='first-page'><a href='#'>&laquo;</a></li>
+							<li><a href='#' >&lsaquo;</a></li>
+							<li><a href='#' >2</a></li>
+							<li><a href='#' >3</a></li>
+							<li class='active'><a href='#'>4</a></li>
+							<li><a href='#' >5</a></li>
+							<li><a href='#' >6</a></li>
+							<li><a href='#' >&rsaquo;</a></li>
+							<li class='last-page'><a href='#'>&raquo;</a></li>
+						</ul>
+						<!-- ENDS pagination -->
+		
+					</div>
+					<!-- ENDS content -->
+
+				</div>
+				<!-- ENDS wrapper-main -->
+			</div>
+			<!-- ENDS MAIN -->
+			
+			<!-- Twitter -->
+			<div id="twitter">
+				<div class="wrapper">
+					<a href="#" id="prev-tweet"></a>
+					<a href="#" id="next-tweet"></a>
+					<img id="bird" src="{{ STATIC_URL }}img/bird.png" alt="Tweets" />
+					<div id="tweets">
+						<ul class="tweet_list"></ul>
+					</div>
+				</div>
+			</div>
+			<!-- ENDS Twitter -->
+
+			
+			<!-- FOOTER -->
+			<div id="footer">
+				<!-- wrapper-footer -->
+				<div class="wrapper">
+					<!-- footer-cols -->
+					<ul id="footer-cols">
+						<li class="col">
+							<h6>Pages</h6>
+							<ul>
+								<li class="page_item"><a href="index.html">Home</a></li>
+								<li class="page_item"><a href="features.html">Features</a></li>
+								<li class="page_item"><a href="blog.html">Blog</a></li>
+								<li class="page_item"><a href="portfolio.html">Portfolio</a></li>
+								<li class="page_item"><a href="gallery.html">Gallery</a></li>
+								<li class="page_item"><a href="contact.html">Contact</a></li>
+							</ul>
+						</li>
+						
+						<li class="col">
+							<h6>Categories</h6>
+							<ul>
+								<li><a href="#">Webdesign projects senectus</a></li>
+								<li><a href="#/">Wordpress projects senectus</a></li>
+								<li><a href="#">Vestibulum tortor quam</a></li>
+								<li><a href="#">Code projects amet quam egestas</a></li>
+								<li><a href="#">Web design projects senectus</a></li>
+								<li><a href="#/">Marketplace projects</a></li>
+								<li><a href="#">Writting projects senectus</a></li>
+								<li><a href="#">Drawings projects fames Aenean</a></li>
+								<li><a href="#/">Wordpress projects Aenean ultricies</a></li>
+							</ul>
+						</li>
+						<li class="col">
+							<h6>About the theme</h6>
+							Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Cursus faucibus, tortor neque egestas augue, eu vulputate magna eros.
+						</li>
+						
+					</ul>
+					<!-- ENDS footer-cols -->
+				</div>
+				<!-- ENDS wrapper-footer -->
+			</div>
+			<!-- ENDS FOOTER -->
+		
+		
+			<!-- Bottom -->
+			<div id="bottom">
+				<!-- wrapper-bottom -->
+				<div class="wrapper">
+					<div id="bottom-text">2011 Nova all rights reserved. <a href="http://www.luiszuno.com"> Luiszuno.com</a> </div>
+					<!-- Social -->
+					<ul class="social ">
+						<li><a href="http://www.facebook.com" class="poshytip  facebook" title="Become a fan"></a></li>
+						<li><a href="http://www.twitter.com" class="poshytip twitter" title="Follow our tweets"></a></li>
+						<li><a href="http://www.dribbble.com" class="poshytip dribbble" title="View our work"></a></li>
+						<li><a href="http://www.addthis.com" class="poshytip addthis" title="Tell everybody"></a></li>
+						<li><a href="http://www.vimeo.com" class="poshytip vimeo" title="View our videos"></a></li>
+						<li><a href="http://www.youtube.com" class="poshytip youtube" title="View our videos"></a></li>
+					</ul>
+					<!-- ENDS Social -->
+					<div id="to-top" class="poshytip" title="To top"></div>
+				</div>
+				<!-- ENDS wrapper-bottom -->
+			</div>
+			<!-- ENDS Bottom -->
+	
+	</body>
+</html>

@@ -8,13 +8,20 @@ class Categoria(models.Model):
     def __unicode__(self):
     	return "%s" % (self.nome)
 
+class Pagina(models.Model):
+    nome = models.CharField(max_length = 255)
+    
+    def __unicode__(self):
+        return "%s" % (self.nome)
+
 class Postagem(models.Model):
     titulo         = models.CharField(max_length = 255)
     datapublicacao = models.DateField()
     usuario        = models.ForeignKey(User)
     conteudo       = models.TextField()
     categoria      = models.ForeignKey(Categoria)
-    imagem         = models.CharField(max_length = 50, null=True)
+    paginas        = models.ManyToManyField(Pagina)
+    imagem         = models.ImageField(upload_to = 'blog_posts/', null=True, blank=True)
 
     def __unicode__(self):
     	return "%s - %s" % (self.titulo, self.categoria.nome)

@@ -10,10 +10,12 @@ handler500 = "pinax.views.server_error"
 
 
 urlpatterns = patterns("",
-    url(r"^$", direct_to_template, {
-        "template": "homepage.html",
-    }, name="home"),
+	url(r"^$","postagens.views.home", name="home"),
+	url(r"^index/$","postagens.views.home", name="home"),
+    # url(r"^$", direct_to_template, {
     url(r"^admin/", include(admin.site.urls)),
+    url(r"^blog/$","postagens.views.blog", name="blog"),
+    url(r"^portfolio/$","postagens.views.portifolio", name="portifolio"),
 )
 
 

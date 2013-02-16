@@ -15,9 +15,10 @@
         integrating numerous reusable Django apps to take care of the
         things that many sites have in common, it lets you focus on what
         makes your site different.
+
         {% endblocktrans %}
     </p>
-    
+
     <h2>About Zero Project</h2>
     <p>
         {% blocktrans %}
@@ -27,5 +28,11 @@
         {% endblocktrans %}
     </p>
     
-    <p><a href="http://pinaxproject.com/" class="btn primary large">{% trans "Learn more &raquo;" %}</a></p>
+    <p><a href="http://pinaxproject.com/" class="btn primary large">{% trans "Leia Mais &raquo;" %}</a></p>
+    <p>
+        {% for postagem in postagens %}
+        <h2>{{ postagem.titulo }}</h2>
+        {{ postagem.conteudo }}
+        {% endfor %}
+    </p>
 {% endblock %}
