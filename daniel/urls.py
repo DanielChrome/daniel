@@ -14,7 +14,9 @@ urlpatterns = patterns("",
 	url(r"^index/$","postagens.views.home", name="home"),
     # url(r"^$", direct_to_template, {
     url(r"^admin/", include(admin.site.urls)),
+    url(r"^shop/", include(shop.urls)),
     url(r"^blog/$","postagens.views.blog", name="blog"),
+    url(r"^blog/(?P<post_pk>\d+)/$", "postagens.views.blog_post"),
     url(r"^portfolio/$","postagens.views.portifolio", name="portifolio"),
 )
 

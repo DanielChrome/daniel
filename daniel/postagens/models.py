@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import datetime
 
 # Create your models here
 class Categoria(models.Model):
@@ -16,7 +17,7 @@ class Pagina(models.Model):
 
 class Postagem(models.Model):
     titulo         = models.CharField(max_length = 255)
-    datapublicacao = models.DateField()
+    datapublicacao = models.DateTimeField()
     usuario        = models.ForeignKey(User)
     conteudo       = models.TextField()
     categoria      = models.ForeignKey(Categoria)
@@ -25,3 +26,13 @@ class Postagem(models.Model):
 
     def __unicode__(self):
     	return "%s - %s" % (self.titulo, self.categoria.nome)
+
+class Comentario(models.Model):
+    post           = models.ForeignKey(Postagem,null=False) 
+    nome           = models.CharField(max_length = 100)
+    email          = models.CharField(max_length = 100, null = False)
+    comentario     = models.TextField(null = False)
+    datacomentario = models.DateTimeField(default=datetime.datetime.now)
+
+    def __unicode__(self):
+        return "%s - %s" % (self.nome,self.comentario)

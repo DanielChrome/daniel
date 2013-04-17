@@ -8,30 +8,20 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Removing M2M table for field pagina on 'Postagem'
-        db.delete_table('postagens_postagem_pagina')
 
-        # Adding M2M table for field paginas on 'Postagem'
-        db.create_table('postagens_postagem_paginas', (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('postagem', models.ForeignKey(orm['postagens.postagem'], null=False)),
-            ('pagina', models.ForeignKey(orm['postagens.pagina'], null=False))
-        ))
-        db.create_unique('postagens_postagem_paginas', ['postagem_id', 'pagina_id'])
+        # Changing field 'Comentario.datacomentario'
+        db.alter_column('postagens_comentario', 'datacomentario', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, auto_now_add=True))
 
+        # Changing field 'Postagem.datapublicacao'
+        db.alter_column('postagens_postagem', 'datapublicacao', self.gf('django.db.models.fields.DateTimeField')())
 
     def backwards(self, orm):
-        # Adding M2M table for field pagina on 'Postagem'
-        db.create_table('postagens_postagem_pagina', (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('postagem', models.ForeignKey(orm['postagens.postagem'], null=False)),
-            ('pagina', models.ForeignKey(orm['postagens.pagina'], null=False))
-        ))
-        db.create_unique('postagens_postagem_pagina', ['postagem_id', 'pagina_id'])
 
-        # Removing M2M table for field paginas on 'Postagem'
-        db.delete_table('postagens_postagem_paginas')
+        # Changing field 'Comentario.datacomentario'
+        db.alter_column('postagens_comentario', 'datacomentario', self.gf('django.db.models.fields.DateField')(auto_now=True, auto_now_add=True))
 
+        # Changing field 'Postagem.datapublicacao'
+        db.alter_column('postagens_postagem', 'datapublicacao', self.gf('django.db.models.fields.DateField')())
 
     models = {
         'auth.group': {
@@ -75,6 +65,15 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'nome': ('django.db.models.fields.CharField', [], {'max_length': '255'})
         },
+        'postagens.comentario': {
+            'Meta': {'object_name': 'Comentario'},
+            'comentario': ('django.db.models.fields.TextField', [], {}),
+            'datacomentario': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'auto_now_add': 'True', 'blank': 'True'}),
+            'email': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'nome': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'post': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['postagens.Postagem']"})
+        },
         'postagens.pagina': {
             'Meta': {'object_name': 'Pagina'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -84,7 +83,7 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Postagem'},
             'categoria': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['postagens.Categoria']"}),
             'conteudo': ('django.db.models.fields.TextField', [], {}),
-            'datapublicacao': ('django.db.models.fields.DateField', [], {}),
+            'datapublicacao': ('django.db.models.fields.DateTimeField', [], {}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'imagem': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'paginas': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['postagens.Pagina']", 'symmetrical': 'False'}),

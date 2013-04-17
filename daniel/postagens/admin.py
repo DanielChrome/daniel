@@ -1,6 +1,6 @@
 # -*- coding: utf8 -*-
 from django.contrib import admin
-from daniel.postagens.models import Postagem, Categoria, Pagina
+from daniel.postagens.models import Postagem, Categoria, Pagina, Comentario
 
 class Posts(admin.ModelAdmin):
 	fields = ['titulo','categoria','paginas','usuario','conteudo','datapublicacao','imagem']
@@ -11,3 +11,4 @@ class Posts(admin.ModelAdmin):
 admin.site.register(Postagem,Posts)
 admin.site.register(Categoria)
 admin.site.register(Pagina)
+admin.site.register(Comentario)

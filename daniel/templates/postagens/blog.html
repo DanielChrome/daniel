@@ -29,7 +29,7 @@
 							{% for 	post in posts%}
 							<!-- post -->
 							<div class="post">
-								<h1><a href="single.html">{{post.titulo}}</a></h1>
+								<h1><a href={{post.pk}}>{{post.titulo}}</a></h1>
 								<div class="n-comments">165</div>
 								
 								<!-- shadow -->
@@ -50,14 +50,14 @@
 											</li>
 										</ul>
 										<!-- ENDS meta -->
-										<a href="single.html" class="cover"><img src={{ MEDIA_URL }}{{post.imagem}}  alt={{post.titulo}} /></a>
+										<a href={{post.pk}} class="cover"><img src={{ MEDIA_URL }}{{post.imagem}}  alt={{post.titulo}} /></a>
 									</div>
 									<!-- ENDS post-thumb -->
 									
 									<div class="the-excerpt">
 										{{post.conteudo}}
 									</div>		
-									<a href="single.html" class="read-more link-button"><span>Read more</span></a>	
+									<a href={{post.pk}} class="read-more link-button"><span>Leia mais</span></a>	
 								
 								</div>
 								<!-- ENDS shadow -->
